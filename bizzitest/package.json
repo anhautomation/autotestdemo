@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "axios": "^0.24.0",
+    "jest": "^27.4.7",
+    "nconf": "^0.11.3",
+    "puppeteer": "^13.0.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
