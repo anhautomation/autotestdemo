@@ -1,0 +1,13 @@
+{
+  "webapp": {
+    "url": "https://ipa-uat.bizzi.vn/",
+    "user": "bizzi.testing@bizzi.vn",
+    "password": "WbFzWnRJ4Qmp5kW"
+  },
+  "webapi": {
+    "url": "https://pl8bxeconi.execute-api.ap-southeast-1.amazonaws.com"
+  },
+  "browser":{
+      "headless": false
+  }
+}
