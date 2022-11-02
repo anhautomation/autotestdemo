@@ -1,0 +1,103 @@
+default:
+  image: node:16
+  before_script: 
+  - apt-get update -y
+  - apt-get install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils gconf-service libgconf-2-4 libgdk-pixbuf2.0-0
+
+web-company-info-test:
+  stage: test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-company-info.test.js 
+  retry: 2
+
+web-expense-report-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-expense-report.test.js
+  retry: 2
+
+web-expense-policy-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-expense-policy.test.js
+  retry: 2
+
+web-expense-category-test:
+  stage: test
+  needs: 
+  - web-expense-policy-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-expense-category.test.js
+  retry: 2
+
+web-expense-approval-flow-test:
+  stage: test
+  needs: 
+  - web-expense-category-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-expense-approval-flow.test.js
+  retry: 2
+
+web-email-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-email.test.js
+  retry: 2
+
+web-invoice-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-invoice.test.js
+  retry: 2
+
+web-invoice-out-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-invoice-out.test.js
+  retry: 2
+
+web-vendor-test:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-vendor.test.js
+  retry: 2
+
+web-talentnet-test-job:
+  stage: test
+  needs: 
+  - web-company-info-test
+  script:
+  - npm install
+  - ./node_modules/typescript/bin/tsc --build
+  - npm test -- target/tests/web-company-talentnet.test.js
+  retry: 2

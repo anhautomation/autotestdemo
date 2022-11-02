@@ -1,0 +1,36 @@
+{
+  "name": "expense-test",
+  "version": "1.0.0",
+  "description": "readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/bizzi-group/automation-test/expense-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/bizzi-group/automation-test/expense-test/issues"
+  },
+  "homepage": "https://gitlab.com/bizzi-group/automation-test/expense-test#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "npm-clean": "^1.0.3",
+    "puppeteer": "^13.7.0",
+    "ts-node": "^10.8.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.5"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}
