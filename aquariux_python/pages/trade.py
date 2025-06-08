@@ -15,6 +15,7 @@ class TradePage:
         self.take_profit_point_locator = "//*[@data-testid='trade-input-takeprofit-points']"
         self.place_buy_order_locator = "//*[@data-testid='trade-button-order']"
         self.trade_confirm_locator = "//*[@data-testid='trade-confirmation-button-confirm']"
+        self.order_type_locator = "//*[@data-testid='trade-dropdown-order-type']"
         # open positions
         self.open_position_locator = "//*[@data-testid='tab-asset-order-type-open-positions']"
         self.asset_open_list_locator = "//*[@data-testid='asset-open-list']"
@@ -49,6 +50,17 @@ class TradePage:
         else:
             raise Exception("[Buy] button is disabled!")
         
+    def select_order_type(self, market_type: str):
+        if self.page.locator(self.order_type_locator).is_enabled():
+            self.page.locator(self.order_type_locator).click()
+        else:
+            raise Exception("[Order Type] drop down list is disabled!")
+        self.order_type_market = f"//*[text()='{market_type}']"
+        if self.page.locator(self.order_type_market).is_enabled():
+            self.page.locator(self.order_type_market).click()
+        else:
+            raise Exception("[Order Market Type] is not visible!")
+
     def input_size(self, size: str):
         self.page.locator(self.size_locator).fill(size)
 

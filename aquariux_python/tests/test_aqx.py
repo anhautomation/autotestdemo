@@ -2,7 +2,7 @@ from pages.login import LoginPage
 from pages.trade import TradePage
 from config.load import AQUARIUX_LOGIN, USERNAME, PASSWORD
 
-def test_trade(page):
+def test_trade_market(page):
     aquariux = LoginPage(page)
     aquariux.navigate_to_login(AQUARIUX_LOGIN)
     aquariux.select_demo_account()
@@ -11,6 +11,7 @@ def test_trade(page):
     aquariux.click_sign_in()
     aquariux = TradePage(page)
     aquariux.select_buy_option()
+    aquariux.select_order_type("Market")
     aquariux.input_size("0.1")
     aquariux.input_stop_loss_points("50")
     aquariux.input_take_profit_points("30")
