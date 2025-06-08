@@ -3,6 +3,7 @@ from playwright.sync_api import Page
 class TradePage:
     def __init__(self, page: Page):
         self.page = page
+        # trading side
         self.one_click_trading_toggle_locator = "//*[@data-testid='toggle-oct']"
         self.one_click_trading_agree_locator = "//*[text()='Agree and continue']"
         self.one_click_trading_checked_locator = "//*[@data-testid='toggle-oct-checked']"
@@ -14,6 +15,11 @@ class TradePage:
         self.take_profit_point_locator = "//*[@data-testid='trade-input-takeprofit-points']"
         self.place_buy_order_locator = "//*[@data-testid='trade-button-order']"
         self.trade_confirm_locator = "//*[@data-testid='trade-confirmation-button-confirm']"
+        # opening position
+        self.opening_position_locator = "//*[@data-testid='tab-asset-order-type-open-positions']"
+        self.asset_open_list_locator = "//*[@data-testid='asset-open-list']"
+        self.asset_item_edit_locator = "//*[@data-testid='asset-open-button-edit']"
+        self.asset_item_close_locator = "//*[@data-testid='asset-open-button-close']"
 
     def check_one_click_trading(self):
         if self.page.locator(self.one_click_trading_toggle_locator).is_enabled():
@@ -66,3 +72,19 @@ class TradePage:
             self.page.locator(self.trade_confirm_locator).click()
         else:
             raise Exception("[Trade Confirm] button is disabled!")
+        
+    def edit_asset_item(self, asset_item: int):
+        self.item_edit = f"{self.asset_open_list}//tr[{asset_item}]{self.asset_item_edit_locator}"
+        if self.page.locator(self.item_edit).is_enabled():
+            self.page.locator(self.item_edit).click()
+        else:
+            raise Exception("[Edit] button is disabled!")
+        
+    def close_asset_item(self, asset_item: int):
+        self.item_close = f"{self.asset_open_list}//tr[{asset_item}]{self.asset_item_close_locator}"
+        if self.page.locator(self.item_close).is_enabled():
+            self.page.locator(self.item_close).click()
+        else:
+            raise Exception("[Close] button is disabled!")
+
+
