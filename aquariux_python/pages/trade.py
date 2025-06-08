@@ -25,6 +25,10 @@ class TradePage:
         # asset item actions
         self.asset_item_edit_locator = "//*[@data-testid='asset-open-button-edit']"
         self.asset_item_close_locator = "//*[@data-testid='asset-open-button-close']"
+        #notification
+        self.notification_locator = "//*[@data-testid='notification-selector']"
+        self.notification_list_locator = "//*[@data-testid='notification-list-result']"
+        self.notification_list_result_locator = "//*[@data-testid='notification-list-result-item']"
 
     def check_one_click_trading(self):
         if self.page.locator(self.one_click_trading_toggle_locator).is_enabled():
@@ -55,7 +59,7 @@ class TradePage:
             self.page.locator(self.order_type_locator).click()
         else:
             raise Exception("[Order Type] drop down list is disabled!")
-        self.order_type_market = f"//*[text()='{market_type}']"
+        self.order_type_market = f"//*[text()='{market_type}' and contains(@data-testid,'trade-dropdown-order-type')]"
         if self.page.locator(self.order_type_market).is_enabled():
             self.page.locator(self.order_type_market).click()
         else:
@@ -117,3 +121,8 @@ class TradePage:
         else:
             raise Exception("[Close] button is disabled!")
 
+    def click_notification(self):
+        if self.page.locator(self.notification_locator).is_enabled():
+            self.page.locator(self.notification_locator).click()
+        else:
+            raise Exception("[Notification] button is disabled!")
